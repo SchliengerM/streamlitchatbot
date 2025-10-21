@@ -6,7 +6,7 @@ st.title("PraevAI ChatBot")
 
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 if not openai_api_key:
-    st.info("Bitte füge deinen OpenAI API Key ein.", icon="🗝️")
+    st.error("❌ Kein API-Key gefunden.")
 else:
     client = OpenAI(api_key=openai_api_key)
 
