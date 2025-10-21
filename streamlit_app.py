@@ -4,7 +4,7 @@ from openai import OpenAI
 
 st.title("PraevAI ChatBot")
 
-openai_api_key = os.environ.get("OPENAI_API_KEY")
+openai_api_key = os.environ.get("openai_api_key")
 if not openai_api_key:
     st.info("Bitte füge deinen OpenAI API Key ein.", icon="🗝️")
 else:
