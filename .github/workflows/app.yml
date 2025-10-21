@@ -40,6 +40,6 @@ jobs:
       # Optional: kurzer Start für Smoke-Test (Runner ist nicht zum Hosten gedacht!)
       - name: Streamlit Smoke-Test (optional)
         run: |
-          streamlit run app.py --server.headless true --server.port 8501 &
+          streamlit run streamlit_app.py --server.headless true --server.port 8501 &
           sleep 5
           echo "Streamlit gestartet (nur zum Test im CI)."
