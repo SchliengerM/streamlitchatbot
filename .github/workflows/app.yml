@@ -1,0 +1,44 @@
+name: CI (Streamlit + OpenAI)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # WICHTIG: Dieses Environment muss exakt so heißen wie bei deinen Environment-Secrets
+    environment: env
+
+    # Hier wird dein Repository-Environment-Secret in die Prozess-Umgebung exportiert
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Dependencies installieren
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Prüfen, ob OPENAI_API_KEY gesetzt ist
+        run: |
+          if [ -z "${OPENAI_API_KEY}" ]; then
+            echo "Key fehlt"; exit 1
+          else
+            echo "Key ist gesetzt ✅"
+          fi
+
+      # Optional: kurzer Start für Smoke-Test (Runner ist nicht zum Hosten gedacht!)
+      - name: Streamlit Smoke-Test (optional)
+        run: |
+          streamlit run app.py --server.headless true --server.port 8501 &
+          sleep 5
+          echo "Streamlit gestartet (nur zum Test im CI)."
