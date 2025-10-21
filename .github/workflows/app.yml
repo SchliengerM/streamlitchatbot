@@ -14,6 +14,7 @@ jobs:
     # Hier wird dein Repository-Environment-Secret in die Prozess-Umgebung exportiert
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      
 
     steps:
       - uses: actions/checkout@v4
