@@ -1,7 +1,8 @@
 import streamlit as st
+import os
 from openai import OpenAI
 
-st.title("💬 Chatbot (Assistant API)")
+st.title("PraevAI ChatBot")
 
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 if not openai_api_key:
