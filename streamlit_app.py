@@ -3,7 +3,7 @@ from openai import OpenAI
 
 st.title("💬 Chatbot (Assistant API)")
 
-openai_api_key = st.text_input("OpenAI API Key", type="password")
+openai_api_key = os.environ.get("OPENAI_API_KEY")
 if not openai_api_key:
     st.info("Bitte füge deinen OpenAI API Key ein.", icon="🗝️")
 else:
